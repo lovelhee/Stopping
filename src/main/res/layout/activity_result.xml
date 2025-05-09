@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".result.ResultActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:background="#F5F5F5">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_home"
+            android:id="@+id/layoutHome"/>
+
+        <LinearLayout
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:elevation="5dp"
+            android:clipChildren="false"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="80dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/rounded_more_white_btn">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📂 AI 분석 결과"
+                android:layout_marginTop="60dp"
+                android:fontFamily="@font/bmjua_otf"
+                android:textSize="26sp"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="스토킹 유형 : "
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="사이버 스토킹"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="에 해당하는 스토킹 행위로 판단됩니다."
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp"
+                android:textSize="16sp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="65dp"
+                android:layout_gravity="start"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="10dp"
+                    android:text="접근 및 물리적 행위"
+                    android:textSize="18sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="65dp"
+                android:layout_gravity="start"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="10dp"
+                    android:text="통신 및 물건을 통한 괴롭힘"
+                    android:textSize="18sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="65dp"
+                android:layout_gravity="start"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="10dp"
+                    android:text="개인정보 및 신분 침해"
+                    android:textSize="18sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="65dp"
+                android:layout_gravity="start"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="10dp"
+                    android:text="지속성/반복성"
+                    android:textSize="18sp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="start"
+                android:text="⚖️ 나와 유사한 판례는?"
+                android:layout_marginStart="40dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="울산지방법원_2023고단3296"
+                android:layout_gravity="start"
+                android:layout_marginEnd="40dp"
+                android:textStyle="bold"
+                android:layout_marginStart="40dp"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="헤어진 피해자에게 반복하여 연락하는 방식으로 스토킹하고 협박한 피고인에게 벌금 900만 원을 선고한 판결"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginTop="5dp"
+                android:textSize="16sp"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:clipChildren="false"
+                android:background="@drawable/rounded_border_gray_btn">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="105dp"
+                    android:src="@drawable/icon_girl"
+                    android:layout_gravity="end|bottom" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📌 맞춤형 지원 제도 확인"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:clipChildren="false"
+                android:background="@drawable/rounded_border_gray_btn">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="93dp"
+                    android:src="@drawable/icon_pick"
+                    android:layout_gravity="end|bottom" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📌 유형별 대응 방안 안내"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="start"
+                android:text="📢 꼭 읽어주세요 !"
+                android:layout_marginStart="40dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="위 내용은 법률 자문이 아닌 참고용\n정보이며, 구체적인 법적 판단은\n변호사와 상담해야 합니다. AI 분석 \n결과는 참고용으로 제공되며, 법적 \n책임을 수반하지 않습니다. 법적 조치가 필요한 경우 변호사와 상담하시기 \n바랍니다."
+                android:layout_gravity="start"
+                android:layout_marginEnd="40dp"
+                android:layout_marginStart="40dp"
+                android:textSize="17sp"
+                android:layout_marginBottom="50dp"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
