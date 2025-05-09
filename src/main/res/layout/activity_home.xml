@@ -201,7 +201,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="맞춤형\n지원 제도\n확인"
+                android:text="분석 결과\n확인"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:clickable="true"
