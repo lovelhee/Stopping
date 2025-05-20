@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:background="@drawable/rounded_white_btn">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="30dp">
+
+        <Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="지원제도 안내"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                android:textStyle="bold"/>
+
+            <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/icon_delete"
+                android:background="@color/white"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="40dp"/>
+        </Toolbar>
+
+        <View
+            android:id="@+id/viewLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FFD9D7"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="20dp"/>
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="※ 제도명"
+            app:layout_constraintTop_toBottomOf="@id/viewLine"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="25dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/tvNameData"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="임시숙소 지원"
+            android:textColor="#424242"
+            android:gravity="start"
+            android:layout_marginStart="55dp"
+            android:layout_marginEnd="55dp"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvName" />
+
+        <TextView
+            android:id="@+id/tvInt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="※ 지원제도 개요"
+            app:layout_constraintTop_toBottomOf="@+id/tvNameData"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="40dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/tvIntData"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="가해자에게 주거지가 노출되어 보복범죄 등 추가 피해가 우려되거나 방화 등 범죄피해로 당장 거주할 곳이 없는 범죄피해자에게 임시숙소를 제공하는 제도"
+            app:layout_constraintTop_toBottomOf="@id/tvInt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="55dp"
+            android:layout_marginEnd="55dp"
+            android:textColor="#424242"
+            android:textSize="14sp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/tvWho"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="※ 지원 대상자"
+            app:layout_constraintTop_toBottomOf="@+id/tvIntData"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="40dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/tvWhoData"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="살인, 강도, 강간, 방화 등 강력범죄나 보복범죄우려 피해자 중 임시숙소가 필요한 자\n성폭력, 가정폭력 피해자로서 ‘긴급쉼터’ 등 보호시설 연계가 곤란한 피해자\n그 외 범죄피해자 중 임시숙소가 긴급히 필요하다고 판단되는 자 "
+            app:layout_constraintTop_toBottomOf="@id/tvWho"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="55dp"
+            android:layout_marginEnd="55dp"
+            android:textColor="#424242"
+            android:textSize="14sp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/tvContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="※ 지원 내용"
+            app:layout_constraintTop_toBottomOf="@+id/tvWhoData"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="40dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/tvContentData"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="각 경찰관서에서 안전성•건전성 등 주변 환경을 고려하여 선정한 숙박업소에서 1~2일 임시 체류할 수 있도록 지원(최대 5일)"
+            app:layout_constraintTop_toBottomOf="@id/tvContent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="55dp"
+            android:layout_marginEnd="55dp"
+            android:textColor="#424242"
+            android:textSize="14sp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/tvProcess"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="※ 지원 절차"
+            app:layout_constraintTop_toBottomOf="@+id/tvContentData"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="40dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/tvProcessData"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="피해자 신청(출동경찰관 또는 담당수사관) → 심사권자 승인 → 숙소연계"
+            app:layout_constraintTop_toBottomOf="@id/tvProcess"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="55dp"
+            android:layout_marginEnd="55dp"
+            android:textColor="#424242"
+            android:textSize="14sp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/tvAsk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="※ 문의"
+            app:layout_constraintTop_toBottomOf="@+id/tvProcessData"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="40dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/tvAskData"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="경찰청 수사인권담당관실 피해자지원계\n시, 도 경찰청 수사과 피해자보호계\n경찰서 수사과 수사지원팀 "
+            app:layout_constraintTop_toBottomOf="@id/tvAsk"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="55dp"
+            android:layout_marginEnd="55dp"
+            android:textColor="#424242"
+            android:textSize="14sp"
+            android:layout_marginTop="10dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
