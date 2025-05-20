@@ -27,12 +27,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:textColor="@color/white"
+            android:fontFamily="@font/hakgyoansim_gureum"
             android:id="@+id/tvLogo"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="STOPP!NG"
-            android:textSize="24sp"
+            android:text="STOPP!ng"
+            android:textSize="18sp"
             android:layout_marginTop="30dp"
             android:layout_marginStart="35dp"
             app:layout_constraintStart_toStartOf="parent"/>
@@ -255,7 +255,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:elevation="5dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="25dp"
             android:clipChildren="false"
             android:background="@drawable/rounded_pink_btn"
             android:orientation="vertical">
