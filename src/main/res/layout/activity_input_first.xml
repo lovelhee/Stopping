@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    tools:context=".input.InputFirstActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_input"
+        android:id="@+id/layoutBack">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이게 스토킹 행위인지 헷갈린다면?\n당신이 겪은 상황을 입력해주세요."
+            android:fontFamily="@font/hakgoansim_bold"
+            android:textColor="#595959"
+            android:textSize="18sp"
+            android:layout_marginTop="180dp"
+            android:layout_marginStart="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="AI가 스토킹 여부를 분석합니다."
+            android:fontFamily="@font/hakgoansim_bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="18dp"
+            android:textSize="28sp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Part1."
+        android:textSize="18sp"
+        android:fontFamily="@font/hakgoansim_bold"
+        android:textColor="#595959"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/layoutBack"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="15dp"
+        android:id="@+id/tvPart"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="상황 입력"
+        android:textSize="18sp"
+        android:fontFamily="@font/hakgoansim_bold"
+        android:textColor="#787878"
+        app:layout_constraintTop_toBottomOf="@+id/layoutBack"
+        app:layout_constraintStart_toEndOf="@+id/tvPart"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:id="@+id/tvContent"/>
+
+    <LinearLayout
+        android:clickable="true"
+        android:focusable="true"
+        android:id="@+id/layoutBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_gray_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="center"
+        android:paddingVertical="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="분석하기"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/tvPart"
+        app:layout_constraintBottom_toTopOf="@+id/layoutBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="20dp"
+        android:background="@drawable/rounded_white_btn"
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginHorizontal="30dp"
+        android:elevation="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🔎 Q1."
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="당신이 겪은 상황을 입력해주세요."
+            android:textColor="#424242"
+            android:textSize="16sp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFEEEE"
+            android:layout_marginVertical="15dp"
+            android:textSize="16sp"
+            android:paddingHorizontal="10dp"
+            android:hint="상황, 장소, 인물 등 구체적인 행위를 입력해주세요.\nAI가 스토킹 여부와 함께 나와 유사한 판례를\n찾아줍니다."/>
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
