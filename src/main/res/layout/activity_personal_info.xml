@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
-        android:background="#F5F5F5"
+        android:background="#FCFCF7"
         android:layout_height="wrap_content">
 
         <LinearLayout
@@ -23,13 +23,14 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <TextView
+                android:id="@+id/tvLogo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:fontFamily="@font/hakgyoansim_gureum"
                 app:layout_constraintTop_toTopOf="parent"
                 android:text="STOPP!ng"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:layout_marginTop="25dp"
                 android:background="@color/white"
                 android:layout_marginStart="35dp" />
@@ -53,7 +54,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="개인 맞춤형 지원 제도 확인"
+                android:text="맞춤형 지원 제도 확인"
                 android:layout_gravity="center"
                 android:textSize="17sp"
                 android:textStyle="bold"
