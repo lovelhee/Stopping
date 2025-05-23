@@ -55,7 +55,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="상황 입력"
+        android:text="당신의 이야기"
         android:textSize="18sp"
         android:fontFamily="@font/hakgoansim_bold"
         android:textColor="#787878"
@@ -117,7 +117,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="당신이 겪은 상황을 입력해주세요."
+            android:text="당신이 겪은 상황을 들려주세요"
             android:textColor="#424242"
             android:textSize="16sp"
             android:layout_marginTop="5dp"
