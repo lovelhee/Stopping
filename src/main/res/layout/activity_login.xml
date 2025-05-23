@@ -22,7 +22,7 @@
             android:id="@+id/tvLogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="STOPP!ng"
+            android:text=""
             android:fontFamily="@font/hakgyoansim_gureum"
             android:textSize="36sp"
             android:textColor="@color/white"

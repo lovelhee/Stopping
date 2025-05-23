@@ -24,7 +24,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         val tvLogo = findViewById<TextView>(R.id.tvLogo)
-        tvLogo.text = Html.fromHtml("STOPP<font color='#FF3B30'>!</font>ng", Html.FROM_HTML_MODE_LEGACY)
+        tvLogo.text = Html.fromHtml("STOPP<font color='#E48181'>!</font>ng", Html.FROM_HTML_MODE_LEGACY)
 
         val loginBtn = findViewById<ImageButton>(R.id.imgBtnLogin)
         loginBtn.setOnClickListener {
