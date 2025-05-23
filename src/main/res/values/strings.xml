@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Stopping</string>
+    <string name="logo_text">STOPP&lt;font color=&quot;#FF3B30&quot;&gt;!&lt;/font&gt;ng</string>
 </resources>
