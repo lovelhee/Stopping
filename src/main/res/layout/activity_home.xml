@@ -74,6 +74,11 @@
                 android:background="@drawable/rounded_pink_btn"/>
 
             <TextView
+                android:id="@+id/tvStart"
+                android:shadowColor="@color/white"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="도움이 필요하신가요?\nAI로 분석하는 스토킹 행위 진단"
@@ -129,6 +134,11 @@
 
             </LinearLayout>
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/line_vertical_gray"/>
+
             <LinearLayout
                 android:id="@+id/layoutTest"
                 android:clickable="true"
@@ -155,6 +165,11 @@
                     android:text="AI 진단"/>
 
             </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/line_vertical_gray"/>
 
             <LinearLayout
                 android:id="@+id/layoutSol"
@@ -198,6 +213,7 @@
             app:layout_constraintTop_toBottomOf="@+id/layoutCategory"
             android:background="@drawable/rounded_white_btn"
             android:elevation="5dp"
+            android:gravity="center"
             android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
@@ -223,6 +239,11 @@
                 android:layout_weight="1"
                 android:layout_marginEnd="20dp"
                 android:layout_gravity="center"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/line_vertical_gray_long"/>
 
             <TextView
                 android:layout_marginStart="20dp"
@@ -319,13 +340,16 @@
                 android:layout_marginStart="20dp"/>
 
             <TextView
+                android:id="@+id/tvNews"
+                android:gravity="center"
+                android:paddingHorizontal="50dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textColor="#5D5D5D"
-                android:text="~~~기사 제목~~~\ndfdfdfddfdfdfdfdfdf"
+                android:text=""
                 android:textSize="17sp"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="5dp"
                 android:clickable="true"
                 android:maxLines="2"
                 android:ellipsize="end"

@@ -2,6 +2,8 @@ package com.example.stopping.home
 
 import android.os.Bundle
 import android.text.Html
+import android.text.SpannableString
+import android.text.style.UnderlineSpan
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -19,11 +21,19 @@ class HomeActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
         val tvLogo = findViewById<TextView>(R.id.tvLogo)
         tvLogo.text = Html.fromHtml(
             "STOPP<font color='#E48181'>!</font>ng",
             Html.FROM_HTML_MODE_LEGACY
         )
+
+        val tvNews = findViewById<TextView>(R.id.tvNews)
+        val dailyNews = "dddddddddddddddddddddddddddddddddddddddddddddddddfdfdf"
+        val underlined = SpannableString(dailyNews)
+        underlined.setSpan(UnderlineSpan(), 0, dailyNews.length, 0)
+        tvNews.text = underlined
+
 
     }
 }
