@@ -10,7 +10,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.stopping.R
 
-class PersonalInfoAdapter(private val items: List<SupportInfo>) :
+class PersonalInfoAdapter(
+    private val items: List<SupportInfo>,
+    private val onInfoClick: (Int) -> Unit) :
     RecyclerView.Adapter<PersonalInfoAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -18,6 +20,7 @@ class PersonalInfoAdapter(private val items: List<SupportInfo>) :
         val tvTitle: TextView = view.findViewById(R.id.tvTitle)
         val tvContent: TextView = view.findViewById(R.id.tvContent)
         val btnAsk: Button = view.findViewById(R.id.btnAsk)
+        val btnInfo: Button = view.findViewById(R.id.btnInfo)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -36,6 +39,9 @@ class PersonalInfoAdapter(private val items: List<SupportInfo>) :
                 data = Uri.parse("tel:${item.contact}")
             }
             holder.itemView.context.startActivity(intent)
+        }
+        holder.btnInfo.setOnClickListener {
+            onInfoClick(item.id)
         }
     }
 

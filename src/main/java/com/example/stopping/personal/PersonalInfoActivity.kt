@@ -3,6 +3,7 @@ package com.example.stopping.personal
 import android.os.Bundle
 import android.text.Html
 import android.util.Log
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -34,7 +35,7 @@ class PersonalInfoActivity : AppCompatActivity() {
 
         val supportIds = intent.getIntegerArrayListExtra("support_ids") ?: arrayListOf()
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerInfo)
-        adapter = PersonalInfoAdapter(supportList)
+        adapter = PersonalInfoAdapter(supportList, ::showDetailDialog)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -63,11 +64,14 @@ class PersonalInfoActivity : AppCompatActivity() {
                 body?.let {
                     val json = JSONObject(it)
                     val info = SupportInfo(
+                        id = id,
                         category = json.getString("category"),
                         programName = json.getString("programName"),
                         description = json.getString("description"),
                         contact = json.getString("contact")
                     )
+
+                    Log.d("CHECK_ID", "지원제도 id: $id")
 
                     runOnUiThread {
                         supportList.add(info)
@@ -78,7 +82,53 @@ class PersonalInfoActivity : AppCompatActivity() {
         })
     }
 
+    private fun showDetailDialog(id: Int) {
+        val request = Request.Builder()
+            .url("https://30b1-164-125-221-234.ngrok-free.app/details/$id")
+            .addHeader("Authorization", "Bearer $TOKEN")
+            .build()
+
+        Log.d("CHECK_DETAIL", "상세정보 조회 id: $id")
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.e("DETAIL_API", "상세 정보 호출 실패", e)
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                if (!response.isSuccessful) {
+                    Log.e("DETAIL_API", "오류 코드: ${response.code}")
+                    return
+                }
+
+                val body = response.body?.string() ?: return
+                val json = JSONObject(body)
+
+                runOnUiThread {
+                    val dialogView = layoutInflater.inflate(R.layout.dialog_detail_info, null)
+                    val dialog = android.app.AlertDialog.Builder(this@PersonalInfoActivity)
+                        .setView(dialogView)
+                        .create()
+
+                    dialogView.findViewById<TextView>(R.id.tvNameData).text = json.getString("programName")
+                    dialogView.findViewById<TextView>(R.id.tvIntData).text = json.getString("description")
+                    dialogView.findViewById<TextView>(R.id.tvWhoData).text = json.getString("target")
+                    dialogView.findViewById<TextView>(R.id.tvContentData).text = json.getString("content")
+                    dialogView.findViewById<TextView>(R.id.tvProcessData).text = json.getString("procedureInfo")
+                    dialogView.findViewById<TextView>(R.id.tvAskData).text = json.getString("contact")
+
+                    dialogView.findViewById<ImageButton>(R.id.btnClose).setOnClickListener {
+                        dialog.dismiss()
+                    }
+
+                    dialog.show()
+                }
+            }
+        })
+    }
+
+
     companion object {
-        private const val TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkcmVhbWttczIwMTRAZ21haWwuY29tIiwiaWF0IjoxNzQ4MTEyNjQ4LCJleHAiOjE3NDgxODQ2NDh9.8lDN8SJJSbscpSAagMVZgZLMPGkuKXHD7blSTwAKLRE" // 너의 토큰 그대로 써줘!
+        private const val TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkcmVhbWttczIwMTRAZ21haWwuY29tIiwiaWF0IjoxNzQ4MTE1MjUwLCJleHAiOjE3NDgxODcyNTB9.kkZRCme91zeZymBBX08ZERD9bEBkWKEhP_WF3dobJJI" // 너의 토큰 그대로 써줘!
     }
 }

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fillViewport="true"
+    android:backgroundTint="@android:color/transparent"
     android:background="@drawable/rounded_white_btn">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,6 +32,7 @@
                 android:textStyle="bold"/>
 
             <ImageButton
+                android:id="@+id/btnClose"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/icon_delete"
