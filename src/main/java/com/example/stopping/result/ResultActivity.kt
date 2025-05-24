@@ -22,9 +22,6 @@ class ResultActivity : AppCompatActivity() {
             insets
         }
 
-
-
-
         val stalkingType = intent.getStringExtra("stalkingType") ?: "분석 결과 없음"
         val checkboxStates = listOf(
             intent.getBooleanExtra("physicalApproachOrContact", false),
@@ -43,7 +40,12 @@ class ResultActivity : AppCompatActivity() {
         val precedentContent = intent.getStringExtra("precedentContent") ?: "-"
         val precedentSimilarity = intent.getStringExtra("precedentSimilarity") ?: "-"
 
-        findViewById<TextView>(R.id.tvName).text = precedentTitle
+        val tvName = findViewById<TextView>(R.id.tvName)
+        val underlinedTitle = SpannableString(precedentTitle).apply {
+            setSpan(UnderlineSpan(), 0, precedentTitle.length, 0)
+        }
+        tvName.text = underlinedTitle
+
         findViewById<TextView>(R.id.tvContent).text = precedentContent
         findViewById<TextView>(R.id.tvPer).text = precedentSimilarity
 
