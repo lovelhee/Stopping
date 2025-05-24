@@ -22,12 +22,8 @@ class ResultActivity : AppCompatActivity() {
             insets
         }
 
-        val tvName = findViewById<TextView>(R.id.tvName)
-        val text = "울산지방법원_2023고단3296"
-        val underlined = SpannableString(text).apply {
-            setSpan(UnderlineSpan(), 0, text.length, 0)
-        }
-        tvName.text = underlined
+
+
 
         val stalkingType = intent.getStringExtra("stalkingType") ?: "분석 결과 없음"
         val checkboxStates = listOf(
@@ -42,6 +38,15 @@ class ResultActivity : AppCompatActivity() {
         findViewById<CheckBox>(R.id.checkbox2).isChecked = checkboxStates[1]
         findViewById<CheckBox>(R.id.checkbox3).isChecked = checkboxStates[2]
         findViewById<CheckBox>(R.id.checkbox4).isChecked = checkboxStates[3]
+
+        val precedentTitle = intent.getStringExtra("precedentTitle") ?: "-"
+        val precedentContent = intent.getStringExtra("precedentContent") ?: "-"
+        val precedentSimilarity = intent.getStringExtra("precedentSimilarity") ?: "-"
+
+        findViewById<TextView>(R.id.tvName).text = precedentTitle
+        findViewById<TextView>(R.id.tvContent).text = precedentContent
+        findViewById<TextView>(R.id.tvPer).text = precedentSimilarity
+
 
     }
 }
