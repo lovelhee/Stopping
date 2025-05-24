@@ -8,6 +8,19 @@
     android:background="#F5F5F5"
     tools:context=".input.InputFirstActivity">
 
+
+    <ImageButton
+        android:id="@+id/imgBtnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_back"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        android:elevation="1dp"
+        android:layout_marginStart="20dp"/>
+
     <LinearLayout
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
@@ -84,7 +97,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="분석하기"
+            android:text="다음 파트로 넘어가기"
             android:textColor="@color/white"
             android:textSize="17sp"
             android:textStyle="bold"/>
@@ -124,6 +137,7 @@
             android:textStyle="bold"/>
 
         <EditText
+            android:id="@+id/etContent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#FFEEEE"
