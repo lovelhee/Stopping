@@ -1,15 +1,20 @@
 package com.example.stopping.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Html
 import android.text.SpannableString
 import android.text.style.UnderlineSpan
+import android.view.View
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.stopping.R
+import com.example.stopping.input.InputFirstActivity
+import com.example.stopping.personal.PersonalInfoActivity
+import com.example.stopping.type.TypeActivity
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +39,29 @@ class HomeActivity : AppCompatActivity() {
         underlined.setSpan(UnderlineSpan(), 0, dailyNews.length, 0)
         tvNews.text = underlined
 
+        findViewById<View>(R.id.layoutMainBtn).setOnClickListener {
+            val intent = Intent(this, InputFirstActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        findViewById<View>(R.id.layoutTest).setOnClickListener {
+            val intent = Intent(this, InputFirstActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        findViewById<View>(R.id.layoutInfo).setOnClickListener {
+            val intent = Intent(this, PersonalInfoActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        findViewById<View>(R.id.layoutSol).setOnClickListener {
+            val intent = Intent(this, TypeActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
     }
 }
