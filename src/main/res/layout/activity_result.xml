@@ -44,8 +44,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="📂 AI 분석 결과"
+                android:textColor="@color/black"
                 android:layout_marginTop="60dp"
-                android:fontFamily="@font/bmjua_otf"
+                android:fontFamily="@font/hakgoansim_bold"
                 android:textSize="26sp"
                 android:textStyle="bold"/>
 
@@ -64,6 +65,7 @@
                     android:textSize="20sp"/>
 
                 <TextView
+                    android:id="@+id/tvType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="사이버 스토킹"
@@ -89,6 +91,7 @@
                 android:orientation="horizontal">
 
                 <CheckBox
+                    android:id="@+id/checkbox1"
                     android:layout_width="20dp"
                     android:layout_height="20dp"/>
 
@@ -111,6 +114,7 @@
                 android:orientation="horizontal">
 
                 <CheckBox
+                    android:id="@+id/checkbox2"
                     android:layout_width="20dp"
                     android:layout_height="20dp"/>
 
@@ -133,6 +137,7 @@
                 android:orientation="horizontal">
 
                 <CheckBox
+                    android:id="@+id/checkbox3"
                     android:layout_width="20dp"
                     android:layout_height="20dp"/>
 
@@ -155,6 +160,7 @@
                 android:orientation="horizontal">
 
                 <CheckBox
+                    android:id="@+id/checkbox4"
                     android:layout_width="20dp"
                     android:layout_height="20dp"/>
 
@@ -185,19 +191,48 @@
                 android:textStyle="bold"
                 android:textColor="@color/black"/>
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="start"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text="- 판례 유사도 : "
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tvPer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:text="90.34%"
+                    android:textColor="#E48181" />
+
+            </LinearLayout>
+
             <TextView
+                android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="울산지방법원_2023고단3296"
                 android:layout_gravity="start"
                 android:layout_marginEnd="40dp"
-                android:textStyle="bold"
+                android:textStyle="bold|italic"
                 android:layout_marginStart="40dp"
                 android:textSize="18sp"
                 android:textColor="@color/black"
                 android:layout_marginTop="10dp"/>
 
             <TextView
+                android:id="@+id/tvContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="헤어진 피해자에게 반복하여 연락하는 방식으로 스토킹하고 협박한 피고인에게 벌금 900만 원을 선고한 판결"
@@ -213,13 +248,15 @@
                 android:layout_marginTop="30dp"/>
 
             <FrameLayout
+                android:id="@+id/layoutPersonal"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
                 android:clipChildren="false"
-                android:background="@drawable/rounded_border_gray_btn">
+                android:elevation="1dp"
+                android:background="@drawable/rounded_yellow_btn">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -240,13 +277,15 @@
             </FrameLayout>
 
             <FrameLayout
+                android:id="@+id/layoutType"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
+                android:elevation="1dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
                 android:clipChildren="false"
-                android:background="@drawable/rounded_border_gray_btn">
+                android:background="@drawable/rounded_yellow_btn">
 
                 <ImageView
                     android:layout_width="wrap_content"

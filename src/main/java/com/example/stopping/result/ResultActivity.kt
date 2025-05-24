@@ -1,6 +1,9 @@
 package com.example.stopping.result
 
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.style.UnderlineSpan
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -17,5 +20,12 @@ class ResultActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        val tvName = findViewById<TextView>(R.id.tvName)
+        val text = "울산지방법원_2023고단3296"
+        val underlined = SpannableString(text).apply {
+            setSpan(UnderlineSpan(), 0, text.length, 0)
+        }
+        tvName.text = underlined
     }
 }
