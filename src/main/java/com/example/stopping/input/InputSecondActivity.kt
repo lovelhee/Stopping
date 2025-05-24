@@ -3,6 +3,7 @@ package com.example.stopping.input
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.CheckBox
@@ -14,22 +15,28 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.stopping.R
 import com.example.stopping.home.HomeActivity
 import com.example.stopping.loading.LoadingActivity
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.Response
+import okhttp3.logging.HttpLoggingInterceptor
+import org.json.JSONObject
+import java.io.IOException
+import java.net.URLEncoder
 
 class InputSecondActivity : AppCompatActivity() {
 
     private lateinit var layoutBtn: LinearLayout
     private lateinit var imgBtnBack: ImageButton
     private lateinit var checkGroups: List<List<CheckBox>>
+    private lateinit var userInput: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_input_second)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+
+        userInput = intent.getStringExtra("user_input") ?: ""
 
         layoutBtn = findViewById(R.id.layoutBtn)
         imgBtnBack = findViewById(R.id.imgBtnBack)
@@ -53,7 +60,9 @@ class InputSecondActivity : AppCompatActivity() {
 
         layoutBtn.setOnClickListener {
             if (isButtonActive()) {
-                startActivity(Intent(this, LoadingActivity::class.java))
+                val intent = Intent(this, LoadingActivity::class.java)
+                intent.putExtra("user_input", userInput)
+                startActivity(intent)
             }
         }
 

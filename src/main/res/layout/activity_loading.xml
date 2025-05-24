@@ -68,9 +68,10 @@
                 android:layout_marginTop="140dp" />
 
             <TextView
+                android:id="@+id/tvInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="오늘의 정보가 매번 갱신됨 길게 들어가면 이렇게 줄바꿈 될 예정 최대 줄 수 제한은 없음 "
+                android:text="전화 상담을 중심으로 피해자 지원 서비스를 제공하는 1366이 모바일 환경변화에 맞춰 사이버 상담 서비스를 지원합니다"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
                 android:textSize="17sp"
