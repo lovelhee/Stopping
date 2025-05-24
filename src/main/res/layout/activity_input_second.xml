@@ -72,7 +72,7 @@
             android:id="@+id/tvContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="나에게 필요한 도움 찾기(복수선택)"
+            android:text="나에게 필요한 도움 찾기 (복수선택)"
             android:textSize="18sp"
             android:fontFamily="@font/hakgoansim_bold"
             android:textColor="#787878"

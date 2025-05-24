@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.stopping.R
+import com.example.stopping.personal.PersonalInfoActivity
 import com.example.stopping.type.TypeActivity
 
 class ResultActivity : AppCompatActivity() {
@@ -62,6 +63,14 @@ class ResultActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val supportIds = intent.getIntegerArrayListExtra("support_ids") ?: arrayListOf()
+        val layoutPersonal = findViewById<FrameLayout>(R.id.layoutPersonal)
+
+        layoutPersonal.setOnClickListener {
+            val intent = Intent(this, PersonalInfoActivity::class.java)
+            intent.putIntegerArrayListExtra("support_ids", supportIds)
+            startActivity(intent)
+        }
 
     }
 }

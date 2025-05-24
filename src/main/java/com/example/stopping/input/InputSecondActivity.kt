@@ -3,27 +3,14 @@ package com.example.stopping.input
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.CheckBox
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.stopping.R
 import com.example.stopping.home.HomeActivity
 import com.example.stopping.loading.LoadingActivity
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.Response
-import okhttp3.logging.HttpLoggingInterceptor
-import org.json.JSONObject
-import java.io.IOException
-import java.net.URLEncoder
 
 class InputSecondActivity : AppCompatActivity() {
 
@@ -60,7 +47,9 @@ class InputSecondActivity : AppCompatActivity() {
 
         layoutBtn.setOnClickListener {
             if (isButtonActive()) {
+                val selectedSupportIds = getSelectedSupportIds()
                 val intent = Intent(this, LoadingActivity::class.java)
+                intent.putIntegerArrayListExtra("support_ids", ArrayList(selectedSupportIds))
                 intent.putExtra("user_input", userInput)
                 startActivity(intent)
             }
@@ -92,4 +81,24 @@ class InputSecondActivity : AppCompatActivity() {
             if (isActive) Color.BLACK else Color.WHITE
         )
     }
+
+    private fun getSelectedSupportIds(): List<Int> {
+        val mapping = mapOf(
+            R.id.check1 to 9, R.id.check2 to 7, R.id.check3 to 5,
+            R.id.check4 to 1, R.id.check5 to 2, R.id.check6 to 4,
+            R.id.check7 to 3, R.id.check8 to 6, R.id.check9 to 20,
+            R.id.check10 to 8, R.id.check11 to 12, R.id.check12 to 10,
+            R.id.check13 to 11, R.id.check14 to 13, R.id.check15 to 14,
+            R.id.check16 to 22, R.id.check17 to 21, R.id.check18 to 23,
+            R.id.check19 to 18, R.id.check20 to 19, R.id.check21 to 24,
+            R.id.check22 to 16, R.id.check23 to 15, R.id.check24 to 17
+        )
+        val selectedIds = mutableListOf<Int>()
+        mapping.forEach { (checkBoxId, supportId) ->
+            val checkBox = findViewById<CheckBox>(checkBoxId)
+            if (checkBox.isChecked) selectedIds.add(supportId)
+        }
+        return selectedIds
+    }
+
 }

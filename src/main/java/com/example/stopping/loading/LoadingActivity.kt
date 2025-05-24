@@ -28,7 +28,7 @@ class LoadingActivity : AppCompatActivity() {
     companion object {
         private const val TAG = "LOADING_API"
         private const val BASE_URL = "https://30b1-164-125-221-234.ngrok-free.app"
-        private const val TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkcmVhbWttczIwMTRAZ21haWwuY29tIiwiaWF0IjoxNzQ4MTA3NzEyLCJleHAiOjE3NDgxNzk3MTJ9.4cmgfLY_AnEe6YgqGCdiXDvABSsJxZAN4shL4V6Na6E"
+        private const val TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkcmVhbWttczIwMTRAZ21haWwuY29tIiwiaWF0IjoxNzQ4MTEyNjQ4LCJleHAiOjE3NDgxODQ2NDh9.8lDN8SJJSbscpSAagMVZgZLMPGkuKXHD7blSTwAKLRE"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,10 +41,12 @@ class LoadingActivity : AppCompatActivity() {
         }
 
         val userInput = intent.getStringExtra("user_input") ?: ""
-        callAiApi(userInput)
+        val supportIds = intent.getIntegerArrayListExtra("support_ids") ?: arrayListOf()
+
+        callAiApi(userInput, supportIds)
     }
 
-    private fun callAiApi(prompt: String) {
+    private fun callAiApi(prompt: String, supportIds: ArrayList<Int>) {
         val encodedPrompt = URLEncoder.encode(prompt, "UTF-8")
         val url = "$BASE_URL/chat?prompt=$encodedPrompt"
 
@@ -73,13 +75,13 @@ class LoadingActivity : AppCompatActivity() {
                     if (body1 != null) {
                         val json1 = JSONObject(body1)
                         // 1차 분석 데이터 파싱 완료 → 2차 판례 API 호출
-                        callPrecedentApi(prompt, json1)
+                        callPrecedentApi(prompt, json1, supportIds)
                     }
                 }
             }
         })
     }
-    private fun callPrecedentApi(prompt: String, json1: JSONObject) {
+    private fun callPrecedentApi(prompt: String, json1: JSONObject, supportIds: ArrayList<Int>) {
         val url = "$BASE_URL/search/simple"
         val jsonBody = JSONObject()
         jsonBody.put("question", prompt)
@@ -126,6 +128,8 @@ class LoadingActivity : AppCompatActivity() {
                                 putExtra("precedentTitle", precedent.getString("title"))
                                 putExtra("precedentContent", precedent.getString("content"))
                                 putExtra("precedentSimilarity", precedent.getString("similarity"))
+
+                                putIntegerArrayListExtra("support_ids", supportIds)
                             }
                             startActivity(intent)
                             finish()
