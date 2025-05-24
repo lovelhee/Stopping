@@ -31,15 +31,47 @@
             android:shadowDy="4"
             android:shadowRadius="20" />
 
+        <TextView
+            android:layout_marginTop="220dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="다음으로 로그인"
+            android:textColor="@android:color/darker_gray"
+            android:fontFamily="@font/hakgoansim_regular"
+            android:textSize="14dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/darker_gray"/>
+
         <ImageButton
             android:id="@+id/imgBtnLogin"
-            android:layout_marginTop="120dp"
-            android:layout_width="260dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:layout_height="wrap_content"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:scaleType="fitXY"
+            android:layout_marginTop="20dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/icon_login_google"/>
+            android:src="@drawable/icon_login_google_sq"/>
+
+        <ImageButton
+            android:id="@+id/imgBtnLoginKakao"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:scaleType="fitXY"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/icon_login_kakao_narrow"/>
+
+        <ImageButton
+            android:id="@+id/imgBtnLoginNaver"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:scaleType="fitXY"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/icon_login_naver"/>
 
     </LinearLayout>
 
