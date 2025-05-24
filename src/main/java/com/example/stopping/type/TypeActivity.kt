@@ -20,8 +20,19 @@ class TypeActivity : AppCompatActivity() {
             insets
         }
 
+        val type = intent.getStringExtra("stalkingType") ?: ""
+
+        val fragment = when (type) {
+            "오프라인 직접 스토킹" -> OfflineFragment()
+            "물건 전달형 스토킹" -> GiftFragment()
+            "통신/사이버 스토킹" -> CyberFragment()
+            "개인정보 악용형 스토킹" -> InfoFragment()
+            "디지털 성적 스토킹" -> DigitalFragment()
+            else -> OfflineFragment() // 기본 fallback
+        }
+
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainer, OfflineFragment())
+            .replace(R.id.fragmentContainer, fragment)
             .commit()
 
         val tvLogo = findViewById<TextView>(R.id.tvLogo)

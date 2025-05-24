@@ -1,15 +1,18 @@
 package com.example.stopping.result
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.style.UnderlineSpan
 import android.widget.CheckBox
+import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.stopping.R
+import com.example.stopping.type.TypeActivity
 
 class ResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +33,9 @@ class ResultActivity : AppCompatActivity() {
             intent.getBooleanExtra("persistenceOrRepetition", false)
         )
 
-        findViewById<TextView>(R.id.tvType).text = stalkingType
+        val tvType = findViewById<TextView>(R.id.tvType)
+        tvType.text = stalkingType
+
         findViewById<CheckBox>(R.id.checkbox1).isChecked = checkboxStates[0]
         findViewById<CheckBox>(R.id.checkbox2).isChecked = checkboxStates[1]
         findViewById<CheckBox>(R.id.checkbox3).isChecked = checkboxStates[2]
@@ -48,6 +53,14 @@ class ResultActivity : AppCompatActivity() {
 
         findViewById<TextView>(R.id.tvContent).text = precedentContent
         findViewById<TextView>(R.id.tvPer).text = precedentSimilarity
+
+        val layoutType = findViewById<FrameLayout>(R.id.layoutType)
+
+        layoutType.setOnClickListener {
+            val intent = Intent(this, TypeActivity::class.java)
+            intent.putExtra("stalkingType", tvType.text.toString())
+            startActivity(intent)
+        }
 
 
     }
