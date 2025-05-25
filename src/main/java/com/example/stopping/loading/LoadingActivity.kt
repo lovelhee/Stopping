@@ -27,8 +27,8 @@ class LoadingActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "LOADING_API"
-        private const val BASE_URL = "https://30b1-164-125-221-234.ngrok-free.app"
-        private const val TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkcmVhbWttczIwMTRAZ21haWwuY29tIiwiaWF0IjoxNzQ4MTE4NTE5LCJleHAiOjE3NDgxOTA1MTl9.4zD13DTwVDs4zF5Pc-rhPSVX1aMry4yjMSZqZ1_Jnzg"
+        private const val BASE_URL = "https://9fcf-58-72-42-92.ngrok-free.app"
+        private const val TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaG9jbzc3MzM4NkBnbWFpbC5jb20iLCJpYXQiOjE3NDgxNjk4MTIsImV4cCI6MTc0ODI0MTgxMn0.2REyMOpnpQlXc_eAjygUWOgYCtqXbRj2H7Gcw61T224"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

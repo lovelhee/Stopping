@@ -1,9 +1,11 @@
 package com.example.stopping.chat
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
+import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -35,6 +37,14 @@ class ChatActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         val searchEdit = findViewById<EditText>(R.id.etSearch)
+
+        val btnBack = findViewById<ImageButton>(R.id.btnBack)
+        btnBack.setOnClickListener {
+            val intent = Intent(this@ChatActivity, com.example.stopping.home.HomeActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            finish()  // 현재 Activity 종료
+        }
 
         searchEdit.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
