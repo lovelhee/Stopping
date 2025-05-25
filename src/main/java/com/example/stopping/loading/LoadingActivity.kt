@@ -28,7 +28,7 @@ class LoadingActivity : AppCompatActivity() {
     companion object {
         private const val TAG = "LOADING_API"
         private const val BASE_URL = "https://30b1-164-125-221-234.ngrok-free.app"
-        private const val TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkcmVhbWttczIwMTRAZ21haWwuY29tIiwiaWF0IjoxNzQ4MTEyNjQ4LCJleHAiOjE3NDgxODQ2NDh9.8lDN8SJJSbscpSAagMVZgZLMPGkuKXHD7blSTwAKLRE"
+        private const val TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkcmVhbWttczIwMTRAZ21haWwuY29tIiwiaWF0IjoxNzQ4MTE4NTE5LCJleHAiOjE3NDgxOTA1MTl9.4zD13DTwVDs4zF5Pc-rhPSVX1aMry4yjMSZqZ1_Jnzg"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,7 +61,6 @@ class LoadingActivity : AppCompatActivity() {
         client.newCall(request1).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 Log.e(TAG, "API 호출 실패", e)
-                // TODO: 실패 시 사용자 알림 처리 추가 가능
             }
 
             override fun onResponse(call: Call, response: Response) {

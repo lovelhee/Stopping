@@ -129,6 +129,6 @@ class PersonalInfoActivity : AppCompatActivity() {
 
 
     companion object {
-        private const val TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkcmVhbWttczIwMTRAZ21haWwuY29tIiwiaWF0IjoxNzQ4MTE1MjUwLCJleHAiOjE3NDgxODcyNTB9.kkZRCme91zeZymBBX08ZERD9bEBkWKEhP_WF3dobJJI" // 너의 토큰 그대로 써줘!
+        private const val TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkcmVhbWttczIwMTRAZ21haWwuY29tIiwiaWF0IjoxNzQ4MTE4NTE5LCJleHAiOjE3NDgxOTA1MTl9.4zD13DTwVDs4zF5Pc-rhPSVX1aMry4yjMSZqZ1_Jnzg"
     }
 }

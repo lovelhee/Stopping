@@ -3,11 +3,13 @@ package com.example.stopping.input
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.NestedScrollView
 import com.example.stopping.R
 import com.example.stopping.home.HomeActivity
 import com.example.stopping.loading.LoadingActivity
