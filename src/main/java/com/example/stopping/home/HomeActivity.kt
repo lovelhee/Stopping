@@ -6,12 +6,14 @@ import android.text.Html
 import android.text.SpannableString
 import android.text.style.UnderlineSpan
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.stopping.R
+import com.example.stopping.chat.ChatActivity
 import com.example.stopping.input.InputFirstActivity
 import com.example.stopping.personal.PersonalInfoActivity
 import com.example.stopping.type.TypeActivity
@@ -32,6 +34,12 @@ class HomeActivity : AppCompatActivity() {
             "STOPP<font color='#E48181'>!</font>ng",
             Html.FROM_HTML_MODE_LEGACY
         )
+
+        val layoutChat = findViewById<FrameLayout>(R.id.layoutChat)
+        layoutChat.setOnClickListener {
+            val intent = Intent(this, ChatActivity::class.java)
+            startActivity(intent)
+        }
 
         val tvNews = findViewById<TextView>(R.id.tvNews)
         val dailyNews = "존 레논, 잔니 베르사체도 당한 스토킹... 피해자 보호는 어떻게?"
