@@ -1,6 +1,7 @@
 package com.example.stopping.home
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.Html
 import android.text.SpannableString
@@ -42,10 +43,14 @@ class HomeActivity : AppCompatActivity() {
         }
 
         val tvNews = findViewById<TextView>(R.id.tvNews)
-        val dailyNews = "존 레논, 잔니 베르사체도 당한 스토킹... 피해자 보호는 어떻게?"
+        val dailyNews = "'접근 금지'에도 전 여친에게 116회 연락한 20대의 최후"
         val underlined = SpannableString(dailyNews)
         underlined.setSpan(UnderlineSpan(), 0, dailyNews.length, 0)
         tvNews.text = underlined
+        tvNews.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.dailian.co.kr/news/view/1502291/?sc=Naver"))
+            startActivity(intent)
+        }
 
         findViewById<View>(R.id.layoutMainBtn).setOnClickListener {
             val intent = Intent(this, InputFirstActivity::class.java)
