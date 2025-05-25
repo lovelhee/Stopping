@@ -1,5 +1,6 @@
 package com.example.stopping.personal
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Html
 import android.util.Log
@@ -39,13 +40,21 @@ class PersonalInfoActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+        val btnBack = findViewById<ImageButton>(R.id.btnBack)
+        btnBack.setOnClickListener {
+            val intent = Intent(this@PersonalInfoActivity, com.example.stopping.result.ResultActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            finish()
+        }
+
         supportIds.forEach { id ->
             fetchSupportInfo(id)
         }
     }
     private fun fetchSupportInfo(id: Int) {
         val request = Request.Builder()
-            .url("https://30b1-164-125-221-234.ngrok-free.app/supports/$id")
+            .url("https://9fcf-58-72-42-92.ngrok-free.app/supports/$id")
             .addHeader("Authorization", "Bearer $TOKEN")
             .build()
 
@@ -84,7 +93,7 @@ class PersonalInfoActivity : AppCompatActivity() {
 
     private fun showDetailDialog(id: Int) {
         val request = Request.Builder()
-            .url("https://30b1-164-125-221-234.ngrok-free.app/details/$id")
+            .url("https://9fcf-58-72-42-92.ngrok-free.app/details/$id")
             .addHeader("Authorization", "Bearer $TOKEN")
             .build()
 
@@ -129,6 +138,6 @@ class PersonalInfoActivity : AppCompatActivity() {
 
 
     companion object {
-        private const val TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkcmVhbWttczIwMTRAZ21haWwuY29tIiwiaWF0IjoxNzQ4MTE4NTE5LCJleHAiOjE3NDgxOTA1MTl9.4zD13DTwVDs4zF5Pc-rhPSVX1aMry4yjMSZqZ1_Jnzg"
+        private const val TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaG9jbzc3MzM4NkBnbWFpbC5jb20iLCJpYXQiOjE3NDgxNjk4MTIsImV4cCI6MTc0ODI0MTgxMn0.2REyMOpnpQlXc_eAjygUWOgYCtqXbRj2H7Gcw61T224"
     }
 }
