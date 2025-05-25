@@ -32,7 +32,7 @@
             android:shadowRadius="20" />
 
         <TextView
-            android:layout_marginTop="220dp"
+            android:layout_marginTop="160dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="다음으로 로그인"
@@ -60,6 +60,7 @@
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:scaleType="fitXY"
+            android:visibility="gone"
             android:layout_marginTop="20dp"
             android:background="@android:color/transparent"
             android:src="@drawable/icon_login_kakao_narrow"/>
@@ -70,6 +71,7 @@
             android:layout_height="50dp"
             android:scaleType="fitXY"
             android:layout_marginTop="20dp"
+            android:visibility="gone"
             android:background="@android:color/transparent"
             android:src="@drawable/icon_login_naver"/>
 
