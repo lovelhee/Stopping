@@ -31,8 +31,39 @@
             android:shadowDy="4"
             android:shadowRadius="20" />
 
+        <EditText
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_more_white_btn"
+            android:hint="ID를 입력해주세요."
+            android:textSize="14sp"
+            android:padding="10dp"
+            android:layout_marginTop="60dp"
+            android:id="@+id/etId"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_more_white_btn"
+            android:hint="비밀번호를 입력해주세요."
+            android:textSize="14sp"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/etPwd"/>
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rounded_pink_btn"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:backgroundTint="#F8F8F8"
+            android:text="로그인"/>
+
         <TextView
-            android:layout_marginTop="160dp"
+            android:layout_marginTop="60dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="다음으로 로그인"
@@ -48,8 +79,8 @@
 
         <ImageButton
             android:id="@+id/imgBtnLogin"
-            android:layout_width="250dp"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:scaleType="fitXY"
             android:layout_marginTop="20dp"
             android:background="@android:color/transparent"
