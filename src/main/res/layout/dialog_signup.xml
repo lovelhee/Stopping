@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@android:color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <ImageButton
+        android:id="@+id/btnClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_delete"
+        android:background="@android:color/transparent"
+        android:layout_gravity="end"/>
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:hint="이메일을 입력하세요."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:hint="비밀번호를 입력하세요."
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"/>
+
+    <Button
+        android:id="@+id/btnSignup"
+        android:text="회원가입"
+        android:textSize="16sp"
+        android:padding="12sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:backgroundTint="#FCE9E9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"/>
+</LinearLayout>

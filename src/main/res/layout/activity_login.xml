@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_more_pink_btn"
             android:hint="ID를 입력해 주세요."
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:padding="10dp"
             android:layout_marginTop="50dp"
             android:id="@+id/etId"/>
@@ -46,7 +46,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_more_pink_btn"
             android:hint="비밀번호를 입력해 주세요."
-            android:textSize="14sp"
+            android:inputType="textPassword"
+            android:textSize="16sp"
             android:padding="10dp"
             android:layout_marginTop="10dp"
             android:id="@+id/etPwd"/>
