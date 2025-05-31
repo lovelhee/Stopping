@@ -3,6 +3,7 @@ package com.example.stopping.login
 import android.content.Intent
 import android.os.Bundle
 import android.text.Html
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -83,9 +84,18 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 override fun onResponse(call: Call, response: Response) {
-                    val token = response.body?.string() // JWT 토큰
-                    if (response.isSuccessful && token != null) {
-                        // 토큰 SharedPreferences에 저장
+                    val body = response.body?.string()
+                    if (response.isSuccessful && body != null) {
+                        val json = JSONObject(body)
+                        val token = json.getString("token") // ← 여기서 파싱!
+                        val userId = json.getString("id") // ← id 받아오기
+
+                        Log.d("LOGIN_RESPONSE", "원본 응답: $body")
+
+                        Log.d("LOGIN_RESPONSE", "받아온 사용자 ID: $userId")
+                        Log.d("LOGIN_RESPONSE", "받아온 토큰: $token")
+
+                        // SharedPreferences 저장
                         val prefs = getSharedPreferences("auth", MODE_PRIVATE)
                         prefs.edit().putString("jwt", token).apply()
 
@@ -100,10 +110,9 @@ class LoginActivity : AppCompatActivity() {
                         }
                     }
                 }
+
             })
         }
-
-
     }
 
     private fun showSignupDialog() {
@@ -151,8 +160,6 @@ class LoginActivity : AppCompatActivity() {
                 }
             })
         }
-
         dialog.show()
     }
-
 }
