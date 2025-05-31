@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_login"
+    tools:context=".login.LoginActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:fontFamily="@font/hakgyoansim_gureum"
+            android:textSize="36sp"
+            android:textColor="@color/white"
+            android:shadowColor="#40000000"
+            android:shadowDx="4"
+            android:shadowDy="4"
+            android:shadowRadius="20" />
+
+        <EditText
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_more_white_btn"
+            android:hint="ID를 입력해주세요."
+            android:textSize="14sp"
+            android:padding="10dp"
+            android:layout_marginTop="60dp"
+            android:id="@+id/etId"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_more_white_btn"
+            android:hint="비밀번호를 입력해주세요."
+            android:textSize="14sp"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/etPwd"/>
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rounded_pink_btn"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:backgroundTint="#F8F8F8"
+            android:text="로그인"/>
+
+        <TextView
+            android:layout_marginTop="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="다음으로 로그인"
+            android:textColor="@android:color/darker_gray"
+            android:fontFamily="@font/hakgoansim_regular"
+            android:textSize="14dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/darker_gray"/>
+
+        <ImageButton
+            android:id="@+id/imgBtnLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/icon_login_google_sq"/>
+
+        <ImageButton
+            android:id="@+id/imgBtnLoginKakao"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:scaleType="fitXY"
+            android:visibility="gone"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/icon_login_kakao_narrow"/>
+
+        <ImageButton
+            android:id="@+id/imgBtnLoginNaver"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:scaleType="fitXY"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            android:background="@android:color/transparent"
+            android:src="@drawable/icon_login_naver"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
