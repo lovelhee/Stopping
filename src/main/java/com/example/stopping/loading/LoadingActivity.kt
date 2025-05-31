@@ -3,6 +3,7 @@ package com.example.stopping.loading
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -27,8 +28,7 @@ class LoadingActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "LOADING_API"
-        private const val BASE_URL = "https://9fcf-58-72-42-92.ngrok-free.app"
-        private const val TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaG9jbzc3MzM4NkBnbWFpbC5jb20iLCJpYXQiOjE3NDgxNjk4MTIsImV4cCI6MTc0ODI0MTgxMn0.2REyMOpnpQlXc_eAjygUWOgYCtqXbRj2H7Gcw61T224"
+        private const val BASE_URL = "https://d096-164-125-221-234.ngrok-free.app"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,47 +43,60 @@ class LoadingActivity : AppCompatActivity() {
         val userInput = intent.getStringExtra("user_input") ?: ""
         val supportIds = intent.getIntegerArrayListExtra("support_ids") ?: arrayListOf()
 
-        callAiApi(userInput, supportIds)
+        val token = getJwtToken()
+        if (token == null) {
+            Toast.makeText(this, "로그인이 필요합니다", Toast.LENGTH_SHORT).show()
+            finish()
+            return
+        }
+
+        callAiApi(token, userInput, supportIds)
     }
 
-    private fun callAiApi(prompt: String, supportIds: ArrayList<Int>) {
+    private fun getJwtToken(): String? {
+        val prefs = getSharedPreferences("auth", MODE_PRIVATE)
+        return prefs.getString("jwt", null)
+    }
+
+    private fun callAiApi(token: String, prompt: String, supportIds: ArrayList<Int>) {
         val encodedPrompt = URLEncoder.encode(prompt, "UTF-8")
         val url = "$BASE_URL/chat?prompt=$encodedPrompt"
 
         val request1 = Request.Builder()
             .url(url)
             .get()
-            .addHeader("Authorization", "Bearer $TOKEN")
+            .addHeader("Authorization", "Bearer $token")
             .build()
 
-        val client = OkHttpClient()
-
-        client.newCall(request1).enqueue(object : Callback {
+        OkHttpClient().newCall(request1).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                Log.e(TAG, "API 호출 실패", e)
+                Log.e(TAG, "AI API 호출 실패", e)
             }
 
             override fun onResponse(call: Call, response: Response) {
                 response.use {
                     if (!it.isSuccessful) {
-                        Log.e(TAG, "응답 오류 코드: ${it.code}")
+                        Log.e(TAG, "AI 응답 오류 코드: ${it.code}")
                         return
                     }
 
                     val body1 = it.body?.string()
                     if (body1 != null) {
                         val json1 = JSONObject(body1)
-                        // 1차 분석 데이터 파싱 완료 → 2차 판례 API 호출
-                        callPrecedentApi(prompt, json1, supportIds)
+                        callPrecedentApi(token, prompt, json1, supportIds)
                     }
                 }
             }
         })
     }
-    private fun callPrecedentApi(prompt: String, json1: JSONObject, supportIds: ArrayList<Int>) {
+
+    private fun callPrecedentApi(token: String, prompt: String, json1: JSONObject, supportIds: ArrayList<Int>) {
         val url = "$BASE_URL/search/simple"
-        val jsonBody = JSONObject()
-        jsonBody.put("question", prompt)
+        val jsonBody = JSONObject().apply {
+            put("question", prompt)
+        }
+
+        Log.d(TAG, "보내는 판례 질문: ${jsonBody}")
 
         val mediaType = "application/json; charset=utf-8".toMediaType()
         val body = jsonBody.toString().toRequestBody(mediaType)
@@ -91,20 +104,19 @@ class LoadingActivity : AppCompatActivity() {
         val request2 = Request.Builder()
             .url(url)
             .post(body)
-            .addHeader("Authorization", "Bearer $TOKEN")
+            .addHeader("Authorization", "Bearer $token")
             .build()
 
-        val client = OkHttpClient()
-
-        client.newCall(request2).enqueue(object : Callback {
+        OkHttpClient().newCall(request2).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                Log.e(TAG, "판례 API 실패", e)
+                Log.e(TAG, "판례 API 호출 실패", e)
             }
 
             override fun onResponse(call: Call, response: Response) {
                 response.use {
                     if (!it.isSuccessful) {
-                        Log.e(TAG, "판례 응답 오류: ${it.code}")
+                        val errorBody = it.body?.string()
+                        Log.e(TAG, "판례 응답 오류: ${it.code} / 내용: $errorBody")
                         return
                     }
 
@@ -114,22 +126,20 @@ class LoadingActivity : AppCompatActivity() {
                             val precedentArray = JSONArray(body2)
                             val precedent = precedentArray.getJSONObject(0)
 
-                            // 두 API 결과를 합쳐서 결과 화면으로 전달
                             val intent = Intent(this@LoadingActivity, ResultActivity::class.java).apply {
-                                // 분석 결과
                                 putExtra("stalkingType", json1.getString("stalkingType"))
                                 putExtra("physicalApproachOrContact", json1.getBoolean("physicalApproachOrContact"))
                                 putExtra("harassmentViaCommunicationOrItems", json1.getBoolean("harassmentViaCommunicationOrItems"))
                                 putExtra("invasionOfPrivacyOrIdentity", json1.getBoolean("invasionOfPrivacyOrIdentity"))
                                 putExtra("persistenceOrRepetition", json1.getBoolean("persistenceOrRepetition"))
 
-                                // 판례 결과
                                 putExtra("precedentTitle", precedent.getString("title"))
                                 putExtra("precedentContent", precedent.getString("content"))
                                 putExtra("precedentSimilarity", precedent.getString("similarity"))
 
                                 putIntegerArrayListExtra("support_ids", supportIds)
                             }
+
                             startActivity(intent)
                             finish()
                         } catch (e: Exception) {

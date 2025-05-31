@@ -6,6 +6,7 @@ import android.text.Html
 import android.util.Log
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -27,6 +28,11 @@ class PersonalInfoActivity : AppCompatActivity() {
     private lateinit var adapter: PersonalInfoAdapter
     private val client = OkHttpClient()
 
+    companion object {
+        private const val TAG = "PERSONAL_API"
+        private const val BASE_URL = "https://d096-164-125-221-234.ngrok-free.app"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personal_info)
@@ -35,6 +41,7 @@ class PersonalInfoActivity : AppCompatActivity() {
         tvLogo.text = Html.fromHtml("STOPP<font color='#E48181'>!</font>ng", Html.FROM_HTML_MODE_LEGACY)
 
         val supportIds = intent.getIntegerArrayListExtra("support_ids") ?: arrayListOf()
+
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerInfo)
         adapter = PersonalInfoAdapter(supportList, ::showDetailDialog)
         recyclerView.adapter = adapter
@@ -52,20 +59,32 @@ class PersonalInfoActivity : AppCompatActivity() {
             fetchSupportInfo(id)
         }
     }
+
+    private fun getJwtToken(): String? {
+        val prefs = getSharedPreferences("auth", MODE_PRIVATE)
+        return prefs.getString("jwt", null)
+    }
+
     private fun fetchSupportInfo(id: Int) {
+
+        val token = getJwtToken() ?: run {
+            Toast.makeText(this, "토큰이 없습니다. 다시 로그인 해주세요.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         val request = Request.Builder()
-            .url("https://9fcf-58-72-42-92.ngrok-free.app/supports/$id")
-            .addHeader("Authorization", "Bearer $TOKEN")
+            .url("$BASE_URL/supports/$id")
+            .addHeader("Authorization", "Bearer $token")
             .build()
 
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                Log.e("SUPPORT_API", "호출 실패", e)
+                Log.e(TAG, "지원정보 호출 실패", e)
             }
 
             override fun onResponse(call: Call, response: Response) {
                 if (!response.isSuccessful) {
-                    Log.e("SUPPORT_API", "오류 코드: ${response.code}")
+                    Log.e(TAG, "지원정보 응답 오류: ${response.code}")
                     return
                 }
 
@@ -92,9 +111,15 @@ class PersonalInfoActivity : AppCompatActivity() {
     }
 
     private fun showDetailDialog(id: Int) {
+
+        val token = getJwtToken() ?: run {
+            Toast.makeText(this, "토큰이 없습니다. 다시 로그인 해주세요.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         val request = Request.Builder()
-            .url("https://9fcf-58-72-42-92.ngrok-free.app/details/$id")
-            .addHeader("Authorization", "Bearer $TOKEN")
+            .url("$BASE_URL/details/$id")
+            .addHeader("Authorization", "Bearer $token")
             .build()
 
         Log.d("CHECK_DETAIL", "상세정보 조회 id: $id")
@@ -106,7 +131,7 @@ class PersonalInfoActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call, response: Response) {
                 if (!response.isSuccessful) {
-                    Log.e("DETAIL_API", "오류 코드: ${response.code}")
+                    Log.e("DETAIL_API", "상세 정보 응답 오류: ${response.code}")
                     return
                 }
 
@@ -134,10 +159,5 @@ class PersonalInfoActivity : AppCompatActivity() {
                 }
             }
         })
-    }
-
-
-    companion object {
-        private const val TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaG9jbzc3MzM4NkBnbWFpbC5jb20iLCJpYXQiOjE3NDgxNjk4MTIsImV4cCI6MTc0ODI0MTgxMn0.2REyMOpnpQlXc_eAjygUWOgYCtqXbRj2H7Gcw61T224"
     }
 }
