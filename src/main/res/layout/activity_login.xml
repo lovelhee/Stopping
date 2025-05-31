@@ -34,18 +34,18 @@
         <EditText
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_more_white_btn"
-            android:hint="ID를 입력해주세요."
+            android:background="@drawable/rounded_more_pink_btn"
+            android:hint="ID를 입력해 주세요."
             android:textSize="14sp"
             android:padding="10dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="50dp"
             android:id="@+id/etId"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_more_white_btn"
-            android:hint="비밀번호를 입력해주세요."
+            android:background="@drawable/rounded_more_pink_btn"
+            android:hint="비밀번호를 입력해 주세요."
             android:textSize="14sp"
             android:padding="10dp"
             android:layout_marginTop="10dp"
@@ -61,6 +61,15 @@
             android:textStyle="bold"
             android:backgroundTint="#F8F8F8"
             android:text="로그인"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/transparent"
+            android:text="회원가입"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:id="@+id/btnMember"/>
 
         <TextView
             android:layout_marginTop="60dp"
