@@ -16,9 +16,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.stopping.R
 import okhttp3.Call
 import okhttp3.Callback
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
+import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
 
@@ -37,15 +40,28 @@ class PersonalInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personal_info)
 
+        val prefs = getSharedPreferences("auth", MODE_PRIVATE)
+        val userId = prefs.getString("userId", null)?.toIntOrNull() ?: return
+        val token = prefs.getString("jwt", null) ?: return
+
         val tvLogo = findViewById<TextView>(R.id.tvLogo)
         tvLogo.text = Html.fromHtml("STOPP<font color='#E48181'>!</font>ng", Html.FROM_HTML_MODE_LEGACY)
 
-        val supportIds = intent.getIntegerArrayListExtra("support_ids") ?: arrayListOf()
+        val supportIds = intent.getIntegerArrayListExtra("support_ids")
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerInfo)
         adapter = PersonalInfoAdapter(supportList, ::showDetailDialog)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
+
+        if (!supportIds.isNullOrEmpty()) {
+            Log.d(TAG, "support_ids 전달됨 → 개별 조회 및 저장")
+            saveSupportResults(userId, supportIds, token)
+            supportIds.forEach { id -> fetchSupportInfo(id, token) }
+        } else {
+            Log.d(TAG, "support_ids 없음 → 저장된 리스트 조회")
+            loadSavedSupportList(userId, token)
+        }
 
         val btnBack = findViewById<ImageButton>(R.id.btnBack)
         btnBack.setOnClickListener {
@@ -54,10 +70,6 @@ class PersonalInfoActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
-        supportIds.forEach { id ->
-            fetchSupportInfo(id)
-        }
     }
 
     private fun getJwtToken(): String? {
@@ -65,12 +77,7 @@ class PersonalInfoActivity : AppCompatActivity() {
         return prefs.getString("jwt", null)
     }
 
-    private fun fetchSupportInfo(id: Int) {
-
-        val token = getJwtToken() ?: run {
-            Toast.makeText(this, "토큰이 없습니다. 다시 로그인 해주세요.", Toast.LENGTH_SHORT).show()
-            return
-        }
+    private fun fetchSupportInfo(id: Int, token: String) {
 
         val request = Request.Builder()
             .url("$BASE_URL/supports/$id")
@@ -110,6 +117,35 @@ class PersonalInfoActivity : AppCompatActivity() {
         })
     }
 
+    private fun saveSupportResults(userId: Int, supportIds: List<Int>, token: String) {
+        val json = JSONObject().apply {
+            put("id", userId)
+            put("supportIdList", JSONArray(supportIds))
+        }
+
+        val requestBody = json.toString().toRequestBody("application/json".toMediaType())
+        val request = Request.Builder()
+            .url("$BASE_URL/users/supports")
+            .addHeader("Authorization", "Bearer $token")
+            .post(requestBody)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.e("SAVE_API", "저장 실패", e)
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                if (!response.isSuccessful) {
+                    Log.e("SAVE_API", "저장 실패: ${response.code}")
+                } else {
+                    Log.d("SAVE_API", "지원제도 저장 성공")
+                }
+            }
+        })
+    }
+
+
     private fun showDetailDialog(id: Int) {
 
         val token = getJwtToken() ?: run {
@@ -118,11 +154,13 @@ class PersonalInfoActivity : AppCompatActivity() {
         }
 
         val request = Request.Builder()
-            .url("$BASE_URL/details/$id")
+            .url("$BASE_URL/details/$id") // 🔁 여기만 수정
             .addHeader("Authorization", "Bearer $token")
             .build()
 
         Log.d("CHECK_DETAIL", "상세정보 조회 id: $id")
+        Log.d("DETAIL_API", "요청할 상세 id: $id, 토큰: $token")
+
 
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
@@ -137,6 +175,7 @@ class PersonalInfoActivity : AppCompatActivity() {
 
                 val body = response.body?.string() ?: return
                 val json = JSONObject(body)
+                Log.d("DETAIL_API", "상세 응답 바디: $body")
 
                 runOnUiThread {
                     val dialogView = layoutInflater.inflate(R.layout.dialog_detail_info, null)
@@ -160,4 +199,41 @@ class PersonalInfoActivity : AppCompatActivity() {
             }
         })
     }
+
+    private fun loadSavedSupportList(userId: Int, token: String) {
+        val request = Request.Builder()
+            .url("$BASE_URL/users/supports/$userId")
+            .addHeader("Authorization", "Bearer $token")
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.e("LOAD_API", "이전 결과 로딩 실패", e)
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                if (!response.isSuccessful) {
+                    Log.e("LOAD_API", "로딩 오류: ${response.code}")
+                    return
+                }
+
+                val jsonArray = JSONArray(response.body?.string())
+                supportList.clear()
+                for (i in 0 until jsonArray.length()) {
+                    val item = jsonArray.getJSONObject(i)
+                    supportList.add(
+                        SupportInfo(
+                            id = item.getInt("id"),
+                            category = item.getString("category"),
+                            programName = item.getString("programName"),
+                            description = item.getString("description"),
+                            contact = item.getString("contact")
+                        )
+                    )
+                }
+                runOnUiThread { adapter.notifyDataSetChanged() }
+            }
+        })
+    }
+
 }

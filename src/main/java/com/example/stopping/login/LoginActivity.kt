@@ -97,7 +97,10 @@ class LoginActivity : AppCompatActivity() {
 
                         // SharedPreferences 저장
                         val prefs = getSharedPreferences("auth", MODE_PRIVATE)
-                        prefs.edit().putString("jwt", token).apply()
+                        prefs.edit()
+                            .putString("jwt", token)
+                            .putString("userId", userId) // ✅ 사용자 ID 저장
+                            .apply()
 
                         runOnUiThread {
                             Toast.makeText(this@LoginActivity, "로그인 성공!", Toast.LENGTH_SHORT).show()
