@@ -218,6 +218,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tvResult"
                 android:layout_marginStart="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -231,6 +232,7 @@
                 android:layout_weight="1"/>
 
             <ImageView
+                android:id="@+id/ivResult"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
@@ -246,10 +248,11 @@
                 android:src="@drawable/line_vertical_gray_long"/>
 
             <TextView
+                android:id="@+id/tvInfo"
                 android:layout_marginStart="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="유형별\n대응 방안\n안내"
+                android:text="맞춤형\n지원 제도\n안내"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
@@ -259,6 +262,7 @@
                 android:layout_weight="1"/>
 
             <ImageView
+                android:id="@+id/ivInfo"
                 android:layout_width="wrap_content"
                 android:clickable="true"
                 android:focusable="true"

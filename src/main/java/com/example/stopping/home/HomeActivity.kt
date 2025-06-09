@@ -17,6 +17,7 @@ import com.example.stopping.R
 import com.example.stopping.chat.ChatActivity
 import com.example.stopping.input.InputFirstActivity
 import com.example.stopping.personal.PersonalInfoActivity
+import com.example.stopping.result.ResultActivity
 import com.example.stopping.type.TypeActivity
 
 class HomeActivity : AppCompatActivity() {
@@ -43,12 +44,12 @@ class HomeActivity : AppCompatActivity() {
         }
 
         val tvNews = findViewById<TextView>(R.id.tvNews)
-        val dailyNews = "'접근 금지'에도 전 여친에게 116회 연락한 20대의 최후"
+        val dailyNews = "춘천지법, 접근금지 어기고 스토킹한 20대 항소심도 벌금형"
         val underlined = SpannableString(dailyNews)
         underlined.setSpan(UnderlineSpan(), 0, dailyNews.length, 0)
         tvNews.text = underlined
         tvNews.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.dailian.co.kr/news/view/1502291/?sc=Naver"))
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://chmbc.co.kr/article/OfIH36_jLgNm"))
             startActivity(intent)
         }
 
@@ -64,16 +65,29 @@ class HomeActivity : AppCompatActivity() {
             finish()
         }
 
-        findViewById<View>(R.id.layoutInfo).setOnClickListener {
+        findViewById<View>(R.id.tvInfo).setOnClickListener {
             val intent = Intent(this, PersonalInfoActivity::class.java)
             startActivity(intent)
-            finish()
+        }
+
+        findViewById<View>(R.id.ivInfo).setOnClickListener {
+            val intent = Intent(this, PersonalInfoActivity::class.java)
+            startActivity(intent)
         }
 
         findViewById<View>(R.id.layoutSol).setOnClickListener {
             val intent = Intent(this, TypeActivity::class.java)
             startActivity(intent)
-            finish()
+        }
+
+        findViewById<View>(R.id.tvResult).setOnClickListener {
+            val intent = Intent(this, ResultActivity::class.java)
+            startActivity(intent)
+        }
+
+        findViewById<View>(R.id.ivResult).setOnClickListener {
+            val intent = Intent(this, ResultActivity::class.java)
+            startActivity(intent)
         }
 
     }

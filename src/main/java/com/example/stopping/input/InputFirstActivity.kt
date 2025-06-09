@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.LinearLayout
@@ -31,6 +32,7 @@ class InputFirstActivity : AppCompatActivity() {
         layoutBtn = findViewById(R.id.layoutBtn)
 
         findViewById<ImageButton>(R.id.imgBtnBack).setOnClickListener {
+            Log.d("ClickTest", "뒤로가기 클릭됨")
             val intent = Intent(this, HomeActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
             startActivity(intent)

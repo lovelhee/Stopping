@@ -8,23 +8,12 @@
     android:background="#F5F5F5"
     tools:context=".input.InputFirstActivity">
 
-
-    <ImageButton
-        android:id="@+id/imgBtnBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/icon_back"
-        android:background="@android:color/transparent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="20dp"
-        android:elevation="1dp"
-        android:layout_marginStart="20dp"/>
-
     <LinearLayout
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
+        android:clickable="false"
+        android:focusable="false"
         android:layout_height="wrap_content"
         android:background="@drawable/background_input"
         android:id="@+id/layoutBack">
@@ -148,5 +137,19 @@
 
 
     </LinearLayout>
+
+    <ImageButton
+        android:clickable="true"
+        android:focusable="true"
+        android:id="@+id/imgBtnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_back"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="30dp"
+        android:elevation="10dp"
+        android:layout_marginStart="20dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
