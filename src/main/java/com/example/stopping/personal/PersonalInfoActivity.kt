@@ -1,5 +1,6 @@
 package com.example.stopping.personal
 
+import com.example.stopping.BuildConfig
 import android.content.Intent
 import android.os.Bundle
 import android.text.Html
@@ -138,6 +139,6 @@ class PersonalInfoActivity : AppCompatActivity() {
 
 
     companion object {
-        private const val TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaG9jbzc3MzM4NkBnbWFpbC5jb20iLCJpYXQiOjE3NDgxNjk4MTIsImV4cCI6MTc0ODI0MTgxMn0.2REyMOpnpQlXc_eAjygUWOgYCtqXbRj2H7Gcw61T224"
+        private val TOKEN = BuildConfig.API_TOKEN
     }
 }

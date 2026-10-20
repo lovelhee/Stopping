@@ -1,5 +1,6 @@
 package com.example.stopping.loading
 
+import com.example.stopping.BuildConfig
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -28,7 +29,7 @@ class LoadingActivity : AppCompatActivity() {
     companion object {
         private const val TAG = "LOADING_API"
         private const val BASE_URL = "https://9fcf-58-72-42-92.ngrok-free.app"
-        private const val TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjaG9jbzc3MzM4NkBnbWFpbC5jb20iLCJpYXQiOjE3NDgxNjk4MTIsImV4cCI6MTc0ODI0MTgxMn0.2REyMOpnpQlXc_eAjygUWOgYCtqXbRj2H7Gcw61T224"
+        private val TOKEN = BuildConfig.API_TOKEN
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
